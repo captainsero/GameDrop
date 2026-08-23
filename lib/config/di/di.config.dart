@@ -9,9 +9,11 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../dio/dio_module.dart' as _i977;
 import '../services/launcher_service/launcher_service.dart' as _i293;
 import '../services/launcher_service/launcher_service_impl.dart' as _i316;
 import '../services/secure_storage/secure_storage_service.dart' as _i349;
@@ -23,6 +25,8 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    final dioModule = _$DioModule();
+    gh.singleton<_i361.Dio>(() => dioModule.dio());
     gh.singleton<_i349.SecureStorageService>(
       () => _i349.SecureStorageService(),
     );
@@ -30,3 +34,5 @@ extension GetItInjectableX on _i174.GetIt {
     return this;
   }
 }
+
+class _$DioModule extends _i977.DioModule {}
