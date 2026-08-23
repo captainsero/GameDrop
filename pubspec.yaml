@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   get_it: ^9.2.1
   flutter_bloc: ^9.1.1
+  flutter_localizations:
+    sdk: flutter
   injectable: ^3.0.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
