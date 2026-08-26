@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter a valid email address"),
         "enterValidPassword": MessageLookupByLibrary.simpleMessage(
             "Password needs uppercase, digit, and special char"),
+        "error": MessageLookupByLibrary.simpleMessage("Error"),
         "errorMessageGeneric": MessageLookupByLibrary.simpleMessage(
             "Something went wrong. Please try again."),
         "idNumberRequired":
@@ -53,6 +54,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Requested resource not found."),
         "onlyLettersAllowed":
             MessageLookupByLibrary.simpleMessage("Only letters allowed"),
+        "oopsSomthingWentWrong":
+            MessageLookupByLibrary.simpleMessage("Oops somthing went wrong"),
         "paswordNotMatched":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "permissionDenied":
@@ -61,6 +64,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Permission denied forever"),
         "requestTimeout": MessageLookupByLibrary.simpleMessage(
             "Request timed out. Please try again."),
+        "returnToGames":
+            MessageLookupByLibrary.simpleMessage("Return to games"),
         "secureStorageErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Failed to save information securely. Please try again."),
         "serverError": MessageLookupByLibrary.simpleMessage(

@@ -279,6 +279,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Error`
+  String get error {
+    return Intl.message(
+      'Error',
+      name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops somthing went wrong`
+  String get oopsSomthingWentWrong {
+    return Intl.message(
+      'Oops somthing went wrong',
+      name: 'oopsSomthingWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Return to games`
+  String get returnToGames {
+    return Intl.message(
+      'Return to games',
+      name: 'returnToGames',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

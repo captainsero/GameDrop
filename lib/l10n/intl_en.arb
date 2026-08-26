@@ -22,5 +22,8 @@
     "enterValidEmail": "Enter a valid email address",
     "enterValidPassword": "Password needs uppercase, digit, and special char",
     "idNumberRequired": "ID number is required",
-    "invalidIdNumber": "Enter a valid 14-digit ID number"
+    "invalidIdNumber": "Enter a valid 14-digit ID number",
+    "error": "Error",
+    "oopsSomthingWentWrong": "Oops somthing went wrong",
+    "returnToGames": "Return to games"
 }
