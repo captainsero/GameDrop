@@ -10,8 +10,8 @@ import 'generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await configureDependencies();
   await HiveConfig.init();
+  await configureDependencies();
   runApp(const MyApp());
 }
 
