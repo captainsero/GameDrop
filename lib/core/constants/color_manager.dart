@@ -41,7 +41,7 @@ abstract class AppColors {
   static const Color backgroundLight2 = Color(0xFF656C9C);
   static const Color backgroundLight3 = Color(0xFF767EB2);
   static const Color backgroundDark1 = Color(0xFF383C5C);
-  static const Color backgroundDark2 = Color(0xFF2C2F48);
+  static const Color backgroundDark2 = Color(0xFF2E3354);
   static const Color backgroundDark3 = Color(0xFF202235);
   static const Color backgroundDark4 = Color(0xFF151623);
   static const Color backgroundDark5 = Color(0xFF0B0C12);
