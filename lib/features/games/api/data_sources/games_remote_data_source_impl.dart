@@ -12,6 +12,7 @@ class GamesRemoteDataSourceImpl implements GamesRemoteDataSourceContract {
     : _apiClient = apiClient;
 
   final GamesApiClient _apiClient;
+
   @override
   Future<BaseResponse<List<GameModel>>> getUpcomingGames({
     required int page,

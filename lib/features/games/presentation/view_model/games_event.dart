@@ -5,3 +5,15 @@ class GetUpcomingGamesEvent extends GamesEvent {
 
   final int page;
 }
+
+class OpenSearchEvent extends GamesEvent {}
+
+class CloseSearchEvent extends GamesEvent {}
+
+class SearchGamesEvent extends GamesEvent {
+  SearchGamesEvent({required this.query});
+
+  final String query;
+}
+
+class ClearSearchEvent extends GamesEvent {}

@@ -27,6 +27,8 @@ import '../../features/games/data/repo/games_repo_impl.dart' as _i854;
 import '../../features/games/domain/repo/games_repo_contract.dart' as _i457;
 import '../../features/games/domain/use_cases/get_upcoming_games_use_case.dart'
     as _i242;
+import '../../features/games/domain/use_cases/search_games_use_case.dart'
+    as _i1030;
 import '../../features/games/presentation/view_model/games_view_model.dart'
     as _i55;
 import '../dio/dio_module.dart' as _i977;
@@ -77,9 +79,15 @@ extension GetItInjectableX on _i174.GetIt {
         repoContract: gh<_i457.GamesRepoContract>(),
       ),
     );
+    gh.factory<_i1030.SearchGamesUseCase>(
+      () => _i1030.SearchGamesUseCase(
+        repoContract: gh<_i457.GamesRepoContract>(),
+      ),
+    );
     gh.factory<_i55.GamesViewModel>(
       () => _i55.GamesViewModel(
         getUpcomingGamesUseCase: gh<_i242.GetUpcomingGamesUseCase>(),
+        searchGamesUseCase: gh<_i1030.SearchGamesUseCase>(),
       ),
     );
     return this;

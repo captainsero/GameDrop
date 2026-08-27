@@ -48,4 +48,26 @@ class GamesRepoImpl implements GamesRepoContract {
         }
     }
   }
+
+  @override
+  Future<BaseResponse<List<GameEntity>>> searchGames({
+    required String query,
+  }) async {
+    // Search is performed entirely in-memory against the Hive cache.
+    final localResponse = await _localDataSource.searchCachedGames(
+      query: query,
+    );
+
+    switch (localResponse) {
+      case SuccessBaseResponse<List<GameModel>>():
+        return SuccessBaseResponse<List<GameEntity>>(
+          data: localResponse.data.map((e) => e.toEntity()).toList(),
+        );
+
+      case ErrorBaseResponse<List<GameModel>>():
+        return ErrorBaseResponse<List<GameEntity>>(
+          error: localResponse.error,
+        );
+    }
+  }
 }
