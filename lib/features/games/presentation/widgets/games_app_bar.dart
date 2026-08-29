@@ -7,10 +7,6 @@ import '../view_model/games_state.dart';
 import '../view_model/games_view_model.dart';
 import 'search_bar_field.dart';
 
-/// AppBar for the Games screen.
-///
-/// Switches between the logo/title and the animated search field based on
-/// [GamesState.isSearchActive]. No local state — reads from [GamesViewModel].
 class GamesAppBar extends StatelessWidget implements PreferredSizeWidget {
   const GamesAppBar({
     required this.searchController,

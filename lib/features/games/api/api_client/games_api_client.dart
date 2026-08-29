@@ -22,7 +22,4 @@ abstract class GamesApiClient {
     @Query('q') String query,
     @Query('page') int page,
   );
-
-  @GET('/games/{id}')
-  Future<GameModel> getGameDetail(@Path('id') int id);
 }
