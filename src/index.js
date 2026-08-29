@@ -21,6 +21,10 @@ export default {
         return await handleUpcoming(url, env);
       }
 
+      if (url.pathname === "/games/search") {
+        return await handleSearch(url, env);
+      }
+
       const detailMatch = url.pathname.match(/^\/games\/(\d+)$/);
       if (detailMatch) {
         return await handleDetail(detailMatch[1], env);
@@ -69,6 +73,49 @@ async function handleUpcoming(url, env) {
 
   await env.GAME_CACHE.put(cacheKey, JSON.stringify(normalized), {
     expirationTtl: CACHE_TTL_SECONDS,
+  });
+
+  return jsonResponse(normalized);
+}
+
+async function handleSearch(url, env) {
+  const query = (url.searchParams.get("q") || "").trim();
+  if (!query) {
+    return jsonResponse({ error: "Missing required query param: q" }, 400);
+  }
+
+  const page = url.searchParams.get("page") || "1";
+  // Cache key includes the query itself, so different searches don't collide
+  const cacheKey = `search:${query.toLowerCase()}:page:${page}`;
+
+  const cached = await env.GAME_CACHE.get(cacheKey, "json");
+  if (cached) {
+    return jsonResponse(cached);
+  }
+
+  const rawgUrl = new URL(`${RAWG_BASE}/games`);
+  rawgUrl.searchParams.set("key", env.RAWG_API_KEY);
+  rawgUrl.searchParams.set("search", query);
+  rawgUrl.searchParams.set("platforms", CONSOLE_PLATFORMS.join(","));
+  rawgUrl.searchParams.set("page_size", "20");
+  rawgUrl.searchParams.set("page", page);
+
+  const res = await fetch(rawgUrl.toString());
+  if (!res.ok) {
+    return jsonResponse({ error: "RAWG upstream error", status: res.status }, 502);
+  }
+  const data = await res.json();
+
+  const normalized = {
+    count: data.count,
+    next: data.next ? true : false,
+    results: data.results.map(normalizeGameSummary),
+  };
+
+  // Shorter TTL than /upcoming — search result freshness matters less,
+  // but long-tail queries shouldn't sit stale for a full hour either
+  await env.GAME_CACHE.put(cacheKey, JSON.stringify(normalized), {
+    expirationTtl: 30 * 60, // 30 minutes
   });
 
   return jsonResponse(normalized);
