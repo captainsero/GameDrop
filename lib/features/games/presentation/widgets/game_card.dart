@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/values_manager.dart';
+import '../../../../core/router/route_path.dart';
 import '../../domain/entities/game_entity.dart';
 import 'game_cover.dart';
 import 'platform_chip.dart';
@@ -25,9 +29,7 @@ class GameCard extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(RadiusSize.r16),
         onTap: () {
-          // Navigate to game details — route will be wired up when the
-          // GameDetails feature is ready.
-          // context.push('${RoutePath.gameDetailsRoute}/${game.id}');
+          unawaited(context.push('${RoutePath.gameDetailsRoute}/${game.id}'));
         },
         child: Padding(
           padding: const EdgeInsets.all(AppPadding.p12),

@@ -10,8 +10,8 @@ class HiveConfig {
 
     // Register adapters
     Hive
-      ..registerAdapter<dynamic>(GameModelAdapter())
-      ..registerAdapter<dynamic>(GameDetailModelAdapter());
+      ..registerAdapter(GameModelAdapter())
+      ..registerAdapter(GameDetailModelAdapter());
 
     // Open boxes — one box per feature/domain
     await Hive.openBox<dynamic>(HiveKeys.gamesBox);
