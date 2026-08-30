@@ -22,7 +22,7 @@ class GameDetailsCountdownSection extends StatelessWidget {
     final releaseDate = game.releaseDate;
     final isTba = game.tba || releaseDate == null;
 
-    final String formattedDate = releaseDate != null
+    final formattedDate = releaseDate != null
         ? DateFormat('MMMM d,\nyyyy').format(releaseDate)
         : 'To Be\nAnnounced';
 
@@ -37,7 +37,6 @@ class GameDetailsCountdownSection extends StatelessWidget {
             style: getBoldStyle(
               fontFamily: FontConstants.outfit,
               color: colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
-              fontSize: FontSize.s12,
             ).copyWith(letterSpacing: 1.5),
           ),
           const SizedBox(height: AppSize.s14),

@@ -58,7 +58,7 @@ void main() {
 
       final bytes = [7, 0, 1, 2, 3, 4, 5, 6];
       var byteIdx = 0;
-      when(() => reader.readByte()).thenAnswer((_) => bytes[byteIdx++]);
+      when(reader.readByte).thenAnswer((_) => bytes[byteIdx++]);
 
       final values = <dynamic>[
         88,
@@ -70,7 +70,7 @@ void main() {
         'Disintegrate the system.',
       ];
       var valIdx = 0;
-      when(() => reader.read()).thenAnswer((_) => values[valIdx++]);
+      when(reader.read).thenAnswer((_) => values[valIdx++]);
 
       final result = adapter.read(reader);
 

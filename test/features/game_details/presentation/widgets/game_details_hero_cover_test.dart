@@ -9,7 +9,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: GameDetailsHeroCover(coverUrl: null),
+            body: GameDetailsHeroCover(),
           ),
         ),
       );

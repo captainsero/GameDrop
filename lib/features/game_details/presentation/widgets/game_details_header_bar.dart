@@ -89,7 +89,6 @@ class GameDetailsHeaderBar extends StatelessWidget {
                 style: getBoldStyle(
                   fontFamily: FontConstants.outfit,
                   color: colorScheme.secondary,
-                  fontSize: FontSize.s12,
                 ),
               ),
             ),

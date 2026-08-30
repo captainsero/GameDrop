@@ -12,7 +12,6 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: GameDetailsHeaderBar(
-            category: 'ACTION RPG',
             onBack: () => backTapped = true,
           ),
         ),

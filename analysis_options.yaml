@@ -43,3 +43,4 @@ linter:
     always_use_package_imports: false
     prefer_relative_imports: true
     avoid_catches_without_on_clauses: false
+    lines_longer_than_80_chars: false

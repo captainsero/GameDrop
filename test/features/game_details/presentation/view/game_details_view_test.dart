@@ -75,9 +75,7 @@ void main() {
       tester,
     ) async {
       when(() => mockViewModel.state).thenReturn(
-        const GameDetailsState(
-          getGameDetailState: BaseState(),
-        ),
+        const GameDetailsState(),
       );
 
       await tester.pumpWidget(buildTestableWidget());

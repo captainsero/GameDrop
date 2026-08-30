@@ -28,7 +28,6 @@ class GameDetailsAboutSection extends StatelessWidget {
             style: getBoldStyle(
               fontFamily: FontConstants.outfit,
               color: colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
-              fontSize: FontSize.s12,
             ).copyWith(letterSpacing: 1.5),
           ),
           const SizedBox(height: AppSize.s12),

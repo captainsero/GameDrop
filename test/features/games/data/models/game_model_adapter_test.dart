@@ -65,7 +65,7 @@ void main() {
           5, // fieldId 5
         ];
         var byteIdx = 0;
-        when(() => reader.readByte()).thenAnswer((_) => bytes[byteIdx++]);
+        when(reader.readByte).thenAnswer((_) => bytes[byteIdx++]);
 
         final values = <dynamic>[
           100, // id
@@ -76,7 +76,7 @@ void main() {
           <dynamic>['PS5', 'PC'], // platforms
         ];
         var valIdx = 0;
-        when(() => reader.read()).thenAnswer((_) => values[valIdx++]);
+        when(reader.read).thenAnswer((_) => values[valIdx++]);
 
         final result = adapter.read(reader);
 
