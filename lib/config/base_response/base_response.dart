@@ -1,4 +1,3 @@
-
 import '../../core/errors/app_error.dart';
 
 sealed class BaseResponse<T> {
