@@ -14,9 +14,9 @@ class GamesViewModel extends Cubit<GamesState> {
   GamesViewModel({
     required GetUpcomingGamesUseCase getUpcomingGamesUseCase,
     required SearchGamesUseCase searchGamesUseCase,
-  })  : _getUpcomingGamesUseCase = getUpcomingGamesUseCase,
-        _searchGamesUseCase = searchGamesUseCase,
-        super(const GamesState());
+  }) : _getUpcomingGamesUseCase = getUpcomingGamesUseCase,
+       _searchGamesUseCase = searchGamesUseCase,
+       super(const GamesState());
 
   final GetUpcomingGamesUseCase _getUpcomingGamesUseCase;
   final SearchGamesUseCase _searchGamesUseCase;

@@ -25,8 +25,7 @@ class SearchGamesBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GamesViewModel, GamesState>(
-      buildWhen: (prev, curr) =>
-          prev.searchGamesState != curr.searchGamesState,
+      buildWhen: (prev, curr) => prev.searchGamesState != curr.searchGamesState,
       builder: (context, state) {
         final s = state.searchGamesState;
 
@@ -44,9 +43,9 @@ class SearchGamesBody extends StatelessWidget {
               final query = searchController.text.trim();
               if (query.isNotEmpty) {
                 unawaited(
-                  context
-                      .read<GamesViewModel>()
-                      .onEvent(SearchGamesEvent(query: query)),
+                  context.read<GamesViewModel>().onEvent(
+                    SearchGamesEvent(query: query),
+                  ),
                 );
               }
             },
