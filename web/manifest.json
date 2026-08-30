@@ -1,6 +1,6 @@
 {
-    "name": "gamedrop",
-    "short_name": "gamedrop",
+    "name": "GameDrop",
+    "short_name": "GameDrop",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0F1117",
