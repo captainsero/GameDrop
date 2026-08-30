@@ -32,9 +32,9 @@ class SearchBarField extends StatelessWidget {
       );
     } else {
       unawaited(
-        context
-            .read<GamesViewModel>()
-            .onEvent(SearchGamesEvent(query: trimmed)),
+        context.read<GamesViewModel>().onEvent(
+          SearchGamesEvent(query: trimmed),
+        ),
       );
     }
   }
@@ -96,9 +96,7 @@ class _ClearFieldButton extends StatelessWidget {
             controller.clear();
             focusNode.requestFocus();
             unawaited(
-              context
-                  .read<GamesViewModel>()
-                  .onEvent(ClearSearchEvent()),
+              context.read<GamesViewModel>().onEvent(ClearSearchEvent()),
             );
           },
         );
