@@ -1,0 +1,49 @@
+name: CI - Demo Branch
+
+# Runs whenever code lands on demo (a merge triggers a push event).
+# Checks only — no build artifact comes out of this one.
+on:
+  push:
+    branches:
+      - demo
+  pull_request:
+    branches:
+      - demo
+
+jobs:
+  ci:
+    name: Analyze, format check, test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Regenerates .g.dart / di.config.dart files fresh every run,
+      # so CI never trusts stale generated code even if it's committed.
+      - name: Run code generation
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Analyze
+        run: flutter analyze --fatal-infos
+
+      - name: Check formatting
+        run: dart format --set-exit-if-changed .
+
+      - name: Run tests
+        run: flutter test --coverage
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/lcov.info
