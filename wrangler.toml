@@ -1,0 +1,9 @@
+name = "gamedrop"
+main = "src/index.js"
+compatibility_date = "2026-01-01"
+ 
+# Paste the "id" value that `npx wrangler kv namespace create GAME_CACHE` printed
+kv_namespaces = [
+  { binding = "GAME_CACHE", id = "6ab4004fc6a44766bd1c3e6e6afc4ab8" }
+]
+ 
