@@ -31,9 +31,9 @@ class UpcomingGamesBody extends StatelessWidget {
           return ErrorView(
             message: s.errorMessage!,
             onRetry: () => unawaited(
-              context
-                  .read<GamesViewModel>()
-                  .onEvent(GetUpcomingGamesEvent(page: 1)),
+              context.read<GamesViewModel>().onEvent(
+                GetUpcomingGamesEvent(page: 1),
+              ),
             ),
           );
         }

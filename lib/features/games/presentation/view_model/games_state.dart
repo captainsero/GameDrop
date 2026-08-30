@@ -15,8 +15,7 @@ class GamesState extends Equatable {
     BaseState<List<GameEntity>>? searchGamesState,
     bool? isSearchActive,
   }) => GamesState(
-    getUpcomingGamesState:
-        getUpcomingGamesState ?? this.getUpcomingGamesState,
+    getUpcomingGamesState: getUpcomingGamesState ?? this.getUpcomingGamesState,
     searchGamesState: searchGamesState ?? this.searchGamesState,
     isSearchActive: isSearchActive ?? this.isSearchActive,
   );
@@ -26,6 +25,9 @@ class GamesState extends Equatable {
   final bool isSearchActive;
 
   @override
-  List<Object?> get props =>
-      [getUpcomingGamesState, searchGamesState, isSearchActive];
+  List<Object?> get props => [
+    getUpcomingGamesState,
+    searchGamesState,
+    isSearchActive,
+  ];
 }

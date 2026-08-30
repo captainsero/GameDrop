@@ -22,27 +22,36 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "connectionTimeout": MessageLookupByLibrary.simpleMessage(
-            "Request timed out. Please check your internet connection."),
-        "errorMessageGeneric": MessageLookupByLibrary.simpleMessage(
-            "Something went wrong. Please try again."),
-        "networkError": MessageLookupByLibrary.simpleMessage(
-            "Network error. Please check your connection."),
-        "noValueKeyFound":
-            MessageLookupByLibrary.simpleMessage("No value found for key: "),
-        "notFound": MessageLookupByLibrary.simpleMessage(
-            "Requested resource not found."),
-        "permissionDenied":
-            MessageLookupByLibrary.simpleMessage("Permission denied"),
-        "permissionDeniedForever":
-            MessageLookupByLibrary.simpleMessage("Permission denied forever"),
-        "requestTimeout": MessageLookupByLibrary.simpleMessage(
-            "Request timed out. Please try again."),
-        "secureStorageErrorMessage": MessageLookupByLibrary.simpleMessage(
-            "Failed to save information securely. Please try again."),
-        "serverError": MessageLookupByLibrary.simpleMessage(
-            "Server error. Please try again later."),
-        "serviceDisabled":
-            MessageLookupByLibrary.simpleMessage("Service disabled")
-      };
+    "connectionTimeout": MessageLookupByLibrary.simpleMessage(
+      "Request timed out. Please check your internet connection.",
+    ),
+    "errorMessageGeneric": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong. Please try again.",
+    ),
+    "networkError": MessageLookupByLibrary.simpleMessage(
+      "Network error. Please check your connection.",
+    ),
+    "noValueKeyFound": MessageLookupByLibrary.simpleMessage(
+      "No value found for key: ",
+    ),
+    "notFound": MessageLookupByLibrary.simpleMessage(
+      "Requested resource not found.",
+    ),
+    "permissionDenied": MessageLookupByLibrary.simpleMessage(
+      "Permission denied",
+    ),
+    "permissionDeniedForever": MessageLookupByLibrary.simpleMessage(
+      "Permission denied forever",
+    ),
+    "requestTimeout": MessageLookupByLibrary.simpleMessage(
+      "Request timed out. Please try again.",
+    ),
+    "secureStorageErrorMessage": MessageLookupByLibrary.simpleMessage(
+      "Failed to save information securely. Please try again.",
+    ),
+    "serverError": MessageLookupByLibrary.simpleMessage(
+      "Server error. Please try again later.",
+    ),
+    "serviceDisabled": MessageLookupByLibrary.simpleMessage("Service disabled"),
+  };
 }

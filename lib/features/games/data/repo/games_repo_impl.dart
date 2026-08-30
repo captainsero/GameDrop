@@ -12,8 +12,8 @@ class GamesRepoImpl implements GamesRepoContract {
   GamesRepoImpl({
     required GamesRemoteDataSourceContract remoteDataSource,
     required GamesLocalDataSourceContract localDataSource,
-  })  : _remoteDataSource = remoteDataSource,
-        _localDataSource = localDataSource;
+  }) : _remoteDataSource = remoteDataSource,
+       _localDataSource = localDataSource;
 
   final GamesRemoteDataSourceContract _remoteDataSource;
   final GamesLocalDataSourceContract _localDataSource;
@@ -31,8 +31,9 @@ class GamesRepoImpl implements GamesRepoContract {
         );
 
       case ErrorBaseResponse<List<GameModel>>():
-        final remoteResponse =
-            await _remoteDataSource.getUpcomingGames(page: page);
+        final remoteResponse = await _remoteDataSource.getUpcomingGames(
+          page: page,
+        );
 
         switch (remoteResponse) {
           case SuccessBaseResponse<List<GameModel>>():
