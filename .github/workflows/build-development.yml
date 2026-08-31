@@ -1,0 +1,73 @@
+name: CI + Build APK - Development Branch
+
+# Runs whenever code lands on development (a merge triggers a push event).
+# Runs the same checks as demo, then builds a debug APK you can download
+# straight from the Actions run summary and install on a test device.
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  ci:
+    name: Analyze, format check, test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run code generation
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Analyze
+        run: flutter analyze --fatal-infos
+
+      - name: Check formatting
+        run: dart format --set-exit-if-changed .
+
+      - name: Run tests
+        run: flutter test --coverage
+
+  build-apk:
+    name: Build debug APK
+    needs: ci
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run code generation
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      # Debug build for now — no signing keystore set up yet (that's Phase 8).
+      # Swap this to `flutter build apk --release` once signing is configured,
+      # and add the keystore + key.properties secrets at that point.
+      - name: Build debug APK
+        run: flutter build apk --debug
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: gamedrop-debug-apk
+          path: build/app/outputs/flutter-apk/app-debug.apk
+          retention-days: 14
