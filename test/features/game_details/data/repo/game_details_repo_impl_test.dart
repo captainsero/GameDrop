@@ -46,30 +46,8 @@ void main() {
 
   group('GameDetailsRepoImpl.getGameDetail', () {
     test(
-      'returns cached game detail on cache hit without calling remote',
+      'fetches from remote, saves to cache, and returns entity on remote success',
       () async {
-        when(
-          () => mockLocalDataSource.getCachedGameDetail(id: 15),
-        ).thenAnswer((_) async => const SuccessBaseResponse(data: tModel));
-
-        final result = await repo.getGameDetail(id: 15);
-
-        expect(result, isA<SuccessBaseResponse<GameDetailEntity>>());
-        final entity = (result as SuccessBaseResponse<GameDetailEntity>).data;
-        expect(entity.id, 15);
-        expect(entity.name, 'Kingdom Come: Deliverance II');
-
-        verify(() => mockLocalDataSource.getCachedGameDetail(id: 15)).called(1);
-        verifyZeroInteractions(mockRemoteDataSource);
-      },
-    );
-
-    test(
-      'fetches from remote, saves to cache, and returns entity on cache miss',
-      () async {
-        when(() => mockLocalDataSource.getCachedGameDetail(id: 15)).thenAnswer(
-          (_) async => const ErrorBaseResponse(error: LocalStorageError()),
-        );
         when(() => mockRemoteDataSource.getGameDetail(id: 15)).thenAnswer(
           (_) async => const SuccessBaseResponse(data: tModel),
         );
@@ -82,20 +60,47 @@ void main() {
         expect(result, isA<SuccessBaseResponse<GameDetailEntity>>());
         final entity = (result as SuccessBaseResponse<GameDetailEntity>).data;
         expect(entity.id, 15);
+        expect(entity.name, 'Kingdom Come: Deliverance II');
 
-        verify(() => mockLocalDataSource.getCachedGameDetail(id: 15)).called(1);
         verify(() => mockRemoteDataSource.getGameDetail(id: 15)).called(1);
         verify(() => mockLocalDataSource.cacheGameDetail(tModel)).called(1);
+        verifyNever(
+          () => mockLocalDataSource.getCachedGameDetail(id: any(named: 'id')),
+        );
       },
     );
 
-    test('returns error when local fails and remote also fails', () async {
+    test(
+      'returns cached game detail when remote fails and local has cached data',
+      () async {
+        const tError = NetworkError();
+        when(() => mockRemoteDataSource.getGameDetail(id: 15)).thenAnswer(
+          (_) async => const ErrorBaseResponse(error: tError),
+        );
+        when(() => mockLocalDataSource.getCachedGameDetail(id: 15)).thenAnswer(
+          (_) async => const SuccessBaseResponse(data: tModel),
+        );
+
+        final result = await repo.getGameDetail(id: 15);
+
+        expect(result, isA<SuccessBaseResponse<GameDetailEntity>>());
+        final entity = (result as SuccessBaseResponse<GameDetailEntity>).data;
+        expect(entity.id, 15);
+        expect(entity.name, 'Kingdom Come: Deliverance II');
+
+        verify(() => mockRemoteDataSource.getGameDetail(id: 15)).called(1);
+        verify(() => mockLocalDataSource.getCachedGameDetail(id: 15)).called(1);
+        verifyNever(() => mockLocalDataSource.cacheGameDetail(any()));
+      },
+    );
+
+    test('returns remote error when remote fails and local also fails', () async {
       const tError = NetworkError();
-      when(() => mockLocalDataSource.getCachedGameDetail(id: 15)).thenAnswer(
-        (_) async => const ErrorBaseResponse(error: LocalStorageError()),
-      );
       when(() => mockRemoteDataSource.getGameDetail(id: 15)).thenAnswer(
         (_) async => const ErrorBaseResponse(error: tError),
+      );
+      when(() => mockLocalDataSource.getCachedGameDetail(id: 15)).thenAnswer(
+        (_) async => const ErrorBaseResponse(error: LocalStorageError()),
       );
 
       final result = await repo.getGameDetail(id: 15);
@@ -103,8 +108,8 @@ void main() {
       expect(result, isA<ErrorBaseResponse<GameDetailEntity>>());
       expect((result as ErrorBaseResponse<GameDetailEntity>).error, tError);
 
-      verify(() => mockLocalDataSource.getCachedGameDetail(id: 15)).called(1);
       verify(() => mockRemoteDataSource.getGameDetail(id: 15)).called(1);
+      verify(() => mockLocalDataSource.getCachedGameDetail(id: 15)).called(1);
       verifyNever(() => mockLocalDataSource.cacheGameDetail(any()));
     });
   });
