@@ -22,27 +22,30 @@ class GameDetailsRepoImpl implements GameDetailsRepoContract {
   Future<BaseResponse<GameDetailEntity>> getGameDetail({
     required int id,
   }) async {
-    final localResponse = await _localDataSource.getCachedGameDetail(id: id);
+    final remoteResponse = await _remoteDataSource.getGameDetail(id: id);
 
-    switch (localResponse) {
+    switch (remoteResponse) {
       case SuccessBaseResponse<GameDetailModel>():
+        await _localDataSource.cacheGameDetail(remoteResponse.data);
         return SuccessBaseResponse<GameDetailEntity>(
-          data: localResponse.data.toEntity(),
+          data: remoteResponse.data.toEntity(),
         );
 
       case ErrorBaseResponse<GameDetailModel>():
-        final remoteResponse = await _remoteDataSource.getGameDetail(id: id);
+        final localResponse = await _localDataSource.getCachedGameDetail(
+          id: id,
+        );
 
-        switch (remoteResponse) {
+        switch (localResponse) {
           case SuccessBaseResponse<GameDetailModel>():
-            await _localDataSource.cacheGameDetail(remoteResponse.data);
             return SuccessBaseResponse<GameDetailEntity>(
-              data: remoteResponse.data.toEntity(),
+              data: localResponse.data.toEntity(),
             );
 
           case ErrorBaseResponse<GameDetailModel>():
             return ErrorBaseResponse<GameDetailEntity>(
               error: remoteResponse.error,
+              errorMessage: remoteResponse.errorMessage,
             );
         }
     }
