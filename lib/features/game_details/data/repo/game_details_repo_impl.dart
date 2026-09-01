@@ -32,7 +32,9 @@ class GameDetailsRepoImpl implements GameDetailsRepoContract {
         );
 
       case ErrorBaseResponse<GameDetailModel>():
-        final localResponse = await _localDataSource.getCachedGameDetail(id: id);
+        final localResponse = await _localDataSource.getCachedGameDetail(
+          id: id,
+        );
 
         switch (localResponse) {
           case SuccessBaseResponse<GameDetailModel>():

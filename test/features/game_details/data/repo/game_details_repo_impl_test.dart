@@ -94,23 +94,26 @@ void main() {
       },
     );
 
-    test('returns remote error when remote fails and local also fails', () async {
-      const tError = NetworkError();
-      when(() => mockRemoteDataSource.getGameDetail(id: 15)).thenAnswer(
-        (_) async => const ErrorBaseResponse(error: tError),
-      );
-      when(() => mockLocalDataSource.getCachedGameDetail(id: 15)).thenAnswer(
-        (_) async => const ErrorBaseResponse(error: LocalStorageError()),
-      );
+    test(
+      'returns remote error when remote fails and local also fails',
+      () async {
+        const tError = NetworkError();
+        when(() => mockRemoteDataSource.getGameDetail(id: 15)).thenAnswer(
+          (_) async => const ErrorBaseResponse(error: tError),
+        );
+        when(() => mockLocalDataSource.getCachedGameDetail(id: 15)).thenAnswer(
+          (_) async => const ErrorBaseResponse(error: LocalStorageError()),
+        );
 
-      final result = await repo.getGameDetail(id: 15);
+        final result = await repo.getGameDetail(id: 15);
 
-      expect(result, isA<ErrorBaseResponse<GameDetailEntity>>());
-      expect((result as ErrorBaseResponse<GameDetailEntity>).error, tError);
+        expect(result, isA<ErrorBaseResponse<GameDetailEntity>>());
+        expect((result as ErrorBaseResponse<GameDetailEntity>).error, tError);
 
-      verify(() => mockRemoteDataSource.getGameDetail(id: 15)).called(1);
-      verify(() => mockLocalDataSource.getCachedGameDetail(id: 15)).called(1);
-      verifyNever(() => mockLocalDataSource.cacheGameDetail(any()));
-    });
+        verify(() => mockRemoteDataSource.getGameDetail(id: 15)).called(1);
+        verify(() => mockLocalDataSource.getCachedGameDetail(id: 15)).called(1);
+        verifyNever(() => mockLocalDataSource.cacheGameDetail(any()));
+      },
+    );
   });
 }
