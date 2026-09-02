@@ -1,4 +1,4 @@
-package com.example.gamedrop
+package com.yassersamir.gamedrop
 
 import io.flutter.embedding.android.FlutterActivity
 
