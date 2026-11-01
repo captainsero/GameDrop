@@ -22,73 +22,55 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "codeIsRequired": MessageLookupByLibrary.simpleMessage("Code is required"),
-    "confirmPassword": MessageLookupByLibrary.simpleMessage(
-      "Please confirm your password",
-    ),
-    "connectionTimeout": MessageLookupByLibrary.simpleMessage(
-      "Request timed out. Please check your internet connection.",
-    ),
-    "emailIsRequired": MessageLookupByLibrary.simpleMessage(
-      "Email is required",
-    ),
-    "enterValidEgyptianPhoneNumber": MessageLookupByLibrary.simpleMessage(
-      "Enter a valid Egyptian phone number",
-    ),
-    "enterValidEmail": MessageLookupByLibrary.simpleMessage(
-      "Enter a valid email address",
-    ),
-    "enterValidPassword": MessageLookupByLibrary.simpleMessage(
-      "Password needs uppercase, digit, and special char",
-    ),
-    "error": MessageLookupByLibrary.simpleMessage("Error"),
-    "errorMessageGeneric": MessageLookupByLibrary.simpleMessage(
-      "Something went wrong. Please try again.",
-    ),
-    "idNumberRequired": MessageLookupByLibrary.simpleMessage(
-      "ID number is required",
-    ),
-    "invalidCode": MessageLookupByLibrary.simpleMessage("Invalid code"),
-    "invalidIdNumber": MessageLookupByLibrary.simpleMessage(
-      "Enter a valid 14-digit ID number",
-    ),
-    "mustBeAtLeast3Characters": MessageLookupByLibrary.simpleMessage(
-      "Must be at least 3 characters",
-    ),
-    "networkError": MessageLookupByLibrary.simpleMessage(
-      "Network error. Please check your connection.",
-    ),
-    "noValueKeyFound": MessageLookupByLibrary.simpleMessage(
-      "No value found for key: ",
-    ),
-    "notFound": MessageLookupByLibrary.simpleMessage(
-      "Requested resource not found.",
-    ),
-    "onlyLettersAllowed": MessageLookupByLibrary.simpleMessage(
-      "Only letters allowed",
-    ),
-    "oopsSomthingWentWrong": MessageLookupByLibrary.simpleMessage(
-      "Oops somthing went wrong",
-    ),
-    "paswordNotMatched": MessageLookupByLibrary.simpleMessage(
-      "Passwords do not match",
-    ),
-    "permissionDenied": MessageLookupByLibrary.simpleMessage(
-      "Permission denied",
-    ),
-    "permissionDeniedForever": MessageLookupByLibrary.simpleMessage(
-      "Permission denied forever",
-    ),
-    "requestTimeout": MessageLookupByLibrary.simpleMessage(
-      "Request timed out. Please try again.",
-    ),
-    "returnToGames": MessageLookupByLibrary.simpleMessage("Return to games"),
-    "secureStorageErrorMessage": MessageLookupByLibrary.simpleMessage(
-      "Failed to save information securely. Please try again.",
-    ),
-    "serverError": MessageLookupByLibrary.simpleMessage(
-      "Server error. Please try again later.",
-    ),
-    "serviceDisabled": MessageLookupByLibrary.simpleMessage("Service disabled"),
-  };
+        "codeIsRequired":
+            MessageLookupByLibrary.simpleMessage("Code is required"),
+        "confirmPassword": MessageLookupByLibrary.simpleMessage(
+            "Please confirm your password"),
+        "connectionTimeout": MessageLookupByLibrary.simpleMessage(
+            "Request timed out. Please check your internet connection."),
+        "emailIsRequired":
+            MessageLookupByLibrary.simpleMessage("Email is required"),
+        "enterValidEgyptianPhoneNumber": MessageLookupByLibrary.simpleMessage(
+            "Enter a valid Egyptian phone number"),
+        "enterValidEmail":
+            MessageLookupByLibrary.simpleMessage("Enter a valid email address"),
+        "enterValidPassword": MessageLookupByLibrary.simpleMessage(
+            "Password needs uppercase, digit, and special char"),
+        "error": MessageLookupByLibrary.simpleMessage("Error"),
+        "errorMessageGeneric": MessageLookupByLibrary.simpleMessage(
+            "Something went wrong. Please try again."),
+        "idNumberRequired":
+            MessageLookupByLibrary.simpleMessage("ID number is required"),
+        "invalidCode": MessageLookupByLibrary.simpleMessage("Invalid code"),
+        "invalidIdNumber": MessageLookupByLibrary.simpleMessage(
+            "Enter a valid 14-digit ID number"),
+        "mustBeAtLeast3Characters": MessageLookupByLibrary.simpleMessage(
+            "Must be at least 3 characters"),
+        "networkError": MessageLookupByLibrary.simpleMessage(
+            "Network error. Please check your connection."),
+        "noValueKeyFound":
+            MessageLookupByLibrary.simpleMessage("No value found for key: "),
+        "notFound": MessageLookupByLibrary.simpleMessage(
+            "Requested resource not found."),
+        "onlyLettersAllowed":
+            MessageLookupByLibrary.simpleMessage("Only letters allowed"),
+        "oopsSomthingWentWrong":
+            MessageLookupByLibrary.simpleMessage("Oops somthing went wrong"),
+        "paswordNotMatched":
+            MessageLookupByLibrary.simpleMessage("Passwords do not match"),
+        "permissionDenied":
+            MessageLookupByLibrary.simpleMessage("Permission denied"),
+        "permissionDeniedForever":
+            MessageLookupByLibrary.simpleMessage("Permission denied forever"),
+        "requestTimeout": MessageLookupByLibrary.simpleMessage(
+            "Request timed out. Please try again."),
+        "returnToGames":
+            MessageLookupByLibrary.simpleMessage("Return to games"),
+        "secureStorageErrorMessage": MessageLookupByLibrary.simpleMessage(
+            "Failed to save information securely. Please try again."),
+        "serverError": MessageLookupByLibrary.simpleMessage(
+            "Server error. Please try again later."),
+        "serviceDisabled":
+            MessageLookupByLibrary.simpleMessage("Service disabled")
+      };
 }
